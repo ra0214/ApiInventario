@@ -9,7 +9,7 @@
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Pedro Hiram Camacho Castillo",
+  "author": "Christian Raúl Mendoza Ramirez",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
