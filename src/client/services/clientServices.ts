@@ -37,6 +37,9 @@ export class clientService {
                 if(clientData.fullname){
                     clientFinded.fullname = clientData.fullname;
                 }
+                if(clientData.password){
+                    clientFinded.password = clientData.password;
+                }
                 if(clientData.celphone){
                     clientFinded.celphone = clientData.celphone;
                 }

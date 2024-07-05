@@ -35,10 +35,10 @@ export class ClientRepository {
   }
 
   public static async createClient(client: Client): Promise<Client> {
-    const query = 'INSERT INTO client (fullname, celphone, email, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO client (fullname, password, celphone, email, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     console.log(client);
     return new Promise((resolve, reject) => {
-      connection.execute(query, [client.fullname, client.celphone, client.email, client.created_at, client.created_by, client.updated_at, client.updated_by, client.deleted], (error, result: ResultSetHeader) => {
+      connection.execute(query, [client.fullname, client.password, client.celphone, client.email, client.created_at, client.created_by, client.updated_at, client.updated_by, client.deleted], (error, result: ResultSetHeader) => {
         if (error) {
           reject(error);
         } else {
@@ -51,9 +51,9 @@ export class ClientRepository {
   }
 
   public static async updateClient(client_id: number, clientData: Client): Promise<Client | null> {
-    const query = 'UPDATE client SET fullname = ?, celphone = ?, email = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE client_id = ?';
+    const query = 'UPDATE client SET fullname = ?, password = ?, celphone = ?, email = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE client_id = ?';
     return new Promise((resolve, reject) => {
-      connection.execute(query, [clientData.fullname, clientData.celphone, clientData.email, clientData.updated_at, clientData.updated_by, clientData.deleted, client_id], (error, result: ResultSetHeader) => {
+      connection.execute(query, [clientData.fullname, clientData.password, clientData.celphone, clientData.email, clientData.updated_at, clientData.updated_by, clientData.deleted, client_id], (error, result: ResultSetHeader) => {
         if (error) {
           reject(error);
         } else {
