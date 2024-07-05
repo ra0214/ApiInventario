@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
+import cors from "cors"
 
 // Importar rutas de módulos
 import employeeRoutes from './employee/routes/employeeRoutes';
@@ -20,6 +21,7 @@ const port: number = parseInt(process.env.PORT as string, 10);
 // Middleware de análisis del cuerpo
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 
 // Rutas de los módulos
 app.use('/api/client', clientRoutes);
