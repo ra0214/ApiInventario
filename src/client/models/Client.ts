@@ -1,6 +1,7 @@
 export interface Client{
     client_id: number | null;
     fullname: string;
+    password: string;
     celphone: number;
     email:string;
     created_at: String;
