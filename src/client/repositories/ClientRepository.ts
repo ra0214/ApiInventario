@@ -35,7 +35,7 @@ export class ClientRepository {
   }
 
   public static async createClient(client: Client): Promise<Client> {
-    const query = 'INSERT INTO client (fullname, password, celphone, email, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO client (fullname, password, celphone, email, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
     console.log(client);
     return new Promise((resolve, reject) => {
       connection.execute(query, [client.fullname, client.password, client.celphone, client.email, client.created_at, client.created_by, client.updated_at, client.updated_by, client.deleted], (error, result: ResultSetHeader) => {
