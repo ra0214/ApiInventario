@@ -6,6 +6,8 @@ import cors from "cors"
 // Importar rutas de módulos
 import employeeRoutes from './employee/routes/employeeRoutes';
 import clientRoutes from './client/routes/clientRoutes';
+import orderRoutes from './order/routes/orderRoutes';
+import productRoutes from './product/routes/productRoutes';
 
 // Importar middlewares compartidos
 import { errorHandler } from './shared/middlewares/errorHandler';
@@ -26,6 +28,8 @@ app.use(cors())
 // Rutas de los módulos
 app.use('/api/client', clientRoutes);
 app.use('/api/employee', employeeRoutes);
+app.use('/api/order', orderRoutes);
+app.use('/api/product',productRoutes);
 
 // Middleware para manejar rutas no encontradas
 app.use(notFoundHandler);
