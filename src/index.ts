@@ -8,6 +8,7 @@ import employeeRoutes from './employee/routes/employeeRoutes';
 import clientRoutes from './client/routes/clientRoutes';
 import orderRoutes from './order/routes/orderRoutes';
 import productRoutes from './product/routes/productRoutes';
+import roleRoutes from './role/routes/roleRoutes';
 
 // Importar middlewares compartidos
 import { errorHandler } from './shared/middlewares/errorHandler';
@@ -30,6 +31,7 @@ app.use('/api/client', clientRoutes);
 app.use('/api/employee', employeeRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/product',productRoutes);
+app.use('/api/role',roleRoutes);
 
 // Middleware para manejar rutas no encontradas
 app.use(notFoundHandler);
