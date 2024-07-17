@@ -26,10 +26,9 @@
 
                 const payload = {
                     employee_id: employee.employee_id,
-                    role_id_fk: employee.role_id,
                     full_name: employee.full_name
                 }
-                return await jwt.sign(payload, secretKey, { expiresIn: '5m' });
+                return jwt.sign(payload, secretKey, { expiresIn: '5m' });
 
             }catch (error: any){
                 throw new Error(`Error al logearse: ${error.message}`);
@@ -85,8 +84,11 @@
                     if(employeeData.password){
                         employeeFinded.password = await bcrypt.hash(employeeData.password, salt);
                     }
-                    if(employeeData.role_id){
-                        employeeFinded.role_id = employeeData.role_id;
+                    if(employeeData.email){
+                        employeeFinded.email = employeeData.email;
+                    }
+                    if(employeeData.celphone){
+                        employeeFinded.celphone = employeeData.celphone;
                     }
                     if(employeeData.deleted){
                         employeeFinded.deleted = employeeData.deleted;

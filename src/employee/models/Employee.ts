@@ -2,7 +2,8 @@ export interface Employee{
     employee_id: number;
     full_name: string;
     password: string;
-    role_id: number;
+    email: string;
+    celphone: number;
     created_at: String;
     created_by: string;
     updated_at: String;
