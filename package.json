@@ -4,6 +4,7 @@
   "description": "API REST de prueba para fundamento de base de datos.",
   "main": "index.js",
   "scripts": {
+    "build": "react-scripts build",
     "dev": "ts-node-dev src/index.ts",
     "start": "node build/index.js",
     "tsc": "tsc",
