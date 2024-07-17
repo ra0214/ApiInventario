@@ -41,5 +41,5 @@ app.use(errorHandler);
 
 // Iniciar el servidor
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Servidor corriendo en http://34.232.184.104:${port}`);
 });
