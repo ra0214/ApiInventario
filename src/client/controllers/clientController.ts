@@ -1,6 +1,23 @@
 import { Request, Response } from 'express';
 import { clientService } from '../services/clientServices';
 
+export const loginClient = async (req: Request, res: Response) => {
+  const { fullname, password } = req.body;
+  try {
+    const token = await clientService.login(fullname, password);
+
+    if (!token) {
+      res.status(401).json({ message: 'Invalid full name or password' });
+    } else {
+      res.status(200).json({ token });
+    }
+
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export const getClients = async (_req: Request, res: Response) => {
   try {
     const client = await clientService.getAllClient();

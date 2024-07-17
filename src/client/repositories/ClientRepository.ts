@@ -34,6 +34,23 @@ export class ClientRepository {
     });
   }
 
+  public static async findByFullName(fullname: string): Promise<Client | null> {
+    return new Promise((resolve, reject) => {
+        connection.query('SELECT * FROM client WHERE fullname = ?', [fullname], (error: any, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                const clients: Client[] = results as Client[];
+                if (clients.length > 0) {
+                    resolve(clients[0]);
+                } else {
+                    resolve(null);
+                }
+            }
+        });
+    });
+}
+
   public static async createClient(client: Client): Promise<Client> {
     const query = 'INSERT INTO client (fullname, password, celphone, email, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
     console.log(client);
