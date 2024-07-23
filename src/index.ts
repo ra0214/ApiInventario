@@ -1,7 +1,8 @@
 import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
-import cors from "cors"
+import cors from 'cors';
+import path from 'path';
 
 // Importar rutas de módulos
 import employeeRoutes from './employee/routes/employeeRoutes';
@@ -24,14 +25,17 @@ const port: number = parseInt(process.env.PORT as string, 10);
 // Middleware de análisis del cuerpo
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors());
 
 // Rutas de los módulos
 app.use('/api/client', clientRoutes);
 app.use('/api/employee', employeeRoutes);
 app.use('/api/order', orderRoutes);
-app.use('/api/product',productRoutes);
-app.use('/api/role',roleRoutes);
+app.use('/api/product', productRoutes);
+app.use('/api/role', roleRoutes);
+
+// Ruta para servir archivos estáticos
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Middleware para manejar rutas no encontradas
 app.use(notFoundHandler);
@@ -41,5 +45,5 @@ app.use(errorHandler);
 
 // Iniciar el servidor
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://34.232.184.104:${port}`);
+  console.log(`Servidor corriendo en ${process.env.URL}:${port}`);
 });

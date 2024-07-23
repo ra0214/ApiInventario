@@ -60,5 +60,5 @@ app.use(notFoundHandler_1.notFoundHandler);
 app.use(errorHandler_1.errorHandler);
 // Iniciar el servidor
 app.listen(port, () => {
-    console.log(`Servidor corriendo en http://34.232.184.104:${port}`);
+    console.log(`Servidor corriendo en http://localhost:${port}`);
 });

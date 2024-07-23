@@ -9,4 +9,5 @@ export interface Product {
     updated_at: String;
     updated_by: string;
     deleted: boolean;
+    url?: string;
 }
