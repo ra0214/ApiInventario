@@ -4,10 +4,10 @@ export interface Product {
     price: number;
     stock: number;
     description: string;
-    created_at: String;
+    created_at: string;
     created_by: string;
-    updated_at: String;
+    updated_at: string;
     updated_by: string;
     deleted: boolean;
     url?: string;
-}
+  }

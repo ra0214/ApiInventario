@@ -11,3 +11,4 @@ productRoutes.put('/:product_id', updateProduct);
 productRoutes.delete('/:product_id', deleteProduct);
 
 export default productRoutes;
+
