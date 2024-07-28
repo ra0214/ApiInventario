@@ -30,8 +30,8 @@ const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const dotenv = __importStar(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 // Importar rutas de módulos
-const employeeRoutes_1 = __importDefault(require("./employee/routes/employeeRoutes"));
 const clientRoutes_1 = __importDefault(require("./client/routes/clientRoutes"));
 const orderRoutes_1 = __importDefault(require("./order/routes/orderRoutes"));
 const productRoutes_1 = __importDefault(require("./product/routes/productRoutes"));
@@ -47,18 +47,24 @@ const port = parseInt(process.env.PORT, 10);
 // Middleware de análisis del cuerpo
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: 'http://localhost:8000/product',
+    methods: 'POST',
+    allowedHeaders: 'Content-Type',
+}));
 // Rutas de los módulos
 app.use('/api/client', clientRoutes_1.default);
-app.use('/api/employee', employeeRoutes_1.default);
 app.use('/api/order', orderRoutes_1.default);
 app.use('/api/product', productRoutes_1.default);
 app.use('/api/role', roleRoutes_1.default);
+// Ruta para servir archivos estáticos
+app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../uploads')));
 // Middleware para manejar rutas no encontradas
 app.use(notFoundHandler_1.notFoundHandler);
 // Middleware de manejo de errores
 app.use(errorHandler_1.errorHandler);
 // Iniciar el servidor
 app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
+    console.log('Serving static files from:', path_1.default.join(__dirname, '../uploads'));
+    console.log(`Servidor corriendo en ${process.env.URL}:${port}`);
 });

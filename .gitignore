@@ -3,7 +3,7 @@
 node_modules/
 
 # production
-build/
+#build/
 
 # IDE - VSCode
 /.vscode

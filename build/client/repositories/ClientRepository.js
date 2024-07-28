@@ -72,10 +72,10 @@ class ClientRepository {
     }
     static createClient(client) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = 'INSERT INTO client (fullname, password, celphone, email, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            const query = 'INSERT INTO client (fullname, password, celphone, email, role_id_fk, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
             console.log(client);
             return new Promise((resolve, reject) => {
-                database_1.default.execute(query, [client.fullname, client.password, client.celphone, client.email, client.created_at, client.created_by, client.updated_at, client.updated_by, client.deleted], (error, result) => {
+                database_1.default.execute(query, [client.fullname, client.password, client.celphone, client.email, client.role_id_fk, client.created_at, client.created_by, client.updated_at, client.updated_by, client.deleted], (error, result) => {
                     if (error) {
                         reject(error);
                     }
@@ -90,9 +90,9 @@ class ClientRepository {
     }
     static updateClient(client_id, clientData) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = 'UPDATE client SET fullname = ?, password = ?, celphone = ?, email = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE client_id = ?';
+            const query = 'UPDATE client SET fullname = ?, password = ?, celphone = ?, email = ?, role_id_fk = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE client_id = ?';
             return new Promise((resolve, reject) => {
-                database_1.default.execute(query, [clientData.fullname, clientData.password, clientData.celphone, clientData.email, clientData.updated_at, clientData.updated_by, clientData.deleted, client_id], (error, result) => {
+                database_1.default.execute(query, [clientData.fullname, clientData.password, clientData.celphone, clientData.email, clientData.role_id_fk, clientData.updated_at, clientData.updated_by, clientData.deleted, client_id], (error, result) => {
                     if (error) {
                         reject(error);
                     }

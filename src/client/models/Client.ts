@@ -4,6 +4,7 @@ export interface Client{
     password: string;
     celphone: number;
     email:string;
+    role_id_fk: number;
     created_at: String;
     created_by: string;
     updated_at: String;

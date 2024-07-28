@@ -35,9 +35,9 @@ export class ProductRepository {
   }
 
   public static async createProduct(product: Product): Promise<Product> {
-    const query = 'INSERT INTO product (product_name, price, stock, description, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO product (product_name, price, stock, url, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
     return new Promise((resolve, reject) => {
-      connection.execute(query, [product.product_name, product.price, product.stock, product.description, product.created_at, product.created_by, product.updated_at, product.updated_by, product.deleted], (error, result: ResultSetHeader) => {
+      connection.execute(query, [product.product_name, product.price, product.stock, product.url, product.created_at, product.created_by, product.updated_at, product.updated_by, product.deleted], (error, result: ResultSetHeader) => {
         if (error) {
           reject(error);
         } else {
@@ -50,9 +50,9 @@ export class ProductRepository {
   }
 
   public static async updateProduct(product_id: number, productData: Product): Promise<Product | null> {
-    const query = 'UPDATE product SET product_name = ?, price = ?, stock = ?, description = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE product_id = ?';
+    const query = 'UPDATE product SET product_name = ?, price = ?, stock = ?, url = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE product_id = ?';
     return new Promise((resolve, reject) => {
-      connection.execute(query, [productData.product_name, productData.price, productData.stock, productData.description, productData.updated_at, productData.updated_by, productData.deleted, product_id], (error, result: ResultSetHeader) => {
+      connection.execute(query, [productData.product_name, productData.price, productData.stock, productData.url, productData.updated_at, productData.updated_by, productData.deleted, product_id], (error, result: ResultSetHeader) => {
         if (error) {
           reject(error);
         } else {

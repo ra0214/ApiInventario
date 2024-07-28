@@ -5,7 +5,6 @@ import cors from 'cors';
 import path from 'path';
 
 // Importar rutas de módulos
-import employeeRoutes from './employee/routes/employeeRoutes';
 import clientRoutes from './client/routes/clientRoutes';
 import orderRoutes from './order/routes/orderRoutes';
 import productRoutes from './product/routes/productRoutes';
@@ -25,11 +24,14 @@ const port: number = parseInt(process.env.PORT as string, 10);
 // Middleware de análisis del cuerpo
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8000/product',
+  methods: 'POST',
+  allowedHeaders: 'Content-Type',
+}));
 
 // Rutas de los módulos
 app.use('/api/client', clientRoutes);
-app.use('/api/employee', employeeRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/role', roleRoutes);
@@ -45,5 +47,6 @@ app.use(errorHandler);
 
 // Iniciar el servidor
 app.listen(port, () => {
+  console.log('Serving static files from:', path.join(__dirname, '../uploads'));
   console.log(`Servidor corriendo en ${process.env.URL}:${port}`);
 });

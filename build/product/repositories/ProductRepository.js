@@ -52,9 +52,9 @@ class ProductRepository {
     }
     static createProduct(product) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = 'INSERT INTO product (product_name, price, stock, description, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            const query = 'INSERT INTO product (product_name, price, stock, url, created_at, created_by, updated_at, updated_by, deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
             return new Promise((resolve, reject) => {
-                database_1.default.execute(query, [product.product_name, product.price, product.stock, product.description, product.created_at, product.created_by, product.updated_at, product.updated_by, product.deleted], (error, result) => {
+                database_1.default.execute(query, [product.product_name, product.price, product.stock, product.url, product.created_at, product.created_by, product.updated_at, product.updated_by, product.deleted], (error, result) => {
                     if (error) {
                         reject(error);
                     }
@@ -69,9 +69,9 @@ class ProductRepository {
     }
     static updateProduct(product_id, productData) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = 'UPDATE product SET product_name = ?, price = ?, stock = ?, description = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE product_id = ?';
+            const query = 'UPDATE product SET product_name = ?, price = ?, stock = ?, url = ?, updated_at = ?, updated_by = ?, deleted = ? WHERE product_id = ?';
             return new Promise((resolve, reject) => {
-                database_1.default.execute(query, [productData.product_name, productData.price, productData.stock, productData.description, productData.updated_at, productData.updated_by, productData.deleted, product_id], (error, result) => {
+                database_1.default.execute(query, [productData.product_name, productData.price, productData.stock, productData.url, productData.updated_at, productData.updated_by, productData.deleted, product_id], (error, result) => {
                     if (error) {
                         reject(error);
                     }

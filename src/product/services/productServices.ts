@@ -6,12 +6,13 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export class productService {
+
   public static async getAllProducts(): Promise<Product[]> {
     try {
       return await ProductRepository.findAll();
     } catch (error: any) {
       throw new Error(`Error al obtener los productos: ${error.message}`);
-    }
+    }  
   }
 
   public static async getProductById(productId: number): Promise<Product | null> {
@@ -28,10 +29,11 @@ export class productService {
     
     try {
       product.url = `${urlProject}:${portProject}/uploads/${file.filename}`;
+      
       product.created_at = DateUtils.formatDate(new Date());
       product.updated_at = DateUtils.formatDate(new Date());
-      product.created_by = 'Usuario que crea el registro';
-      product.updated_by = 'Usuario que actualizó por última vez el registro';
+      product.created_by = 'admin';
+      product.updated_by = 'admin';
 
       return await ProductRepository.createProduct(product);
     } catch (error: any) {

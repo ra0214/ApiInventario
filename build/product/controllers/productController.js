@@ -43,7 +43,10 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getProductById = getProductById;
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const newProduct = yield productServices_1.productService.addProduct(req.body);
+        if (!req.file) {
+            return res.status(400).send('No file uploaded.');
+        }
+        const newProduct = yield productServices_1.productService.addProduct(req.body, req.file);
         if (newProduct) {
             res.status(201).json(newProduct);
         }

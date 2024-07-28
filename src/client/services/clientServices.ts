@@ -88,6 +88,9 @@ export class clientService {
                 if(clientData.email){
                     clientFinded.email = clientData.email;
                 }
+                if(clientData.role_id_fk){
+                    clientFinded.role_id_fk = clientData.role_id_fk;
+                }
                 if(clientData.deleted){
                     clientFinded.deleted = clientData.deleted;
                 }
