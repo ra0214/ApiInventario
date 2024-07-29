@@ -1,8 +1,8 @@
 import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { ClientRepository } from '../../client/repositories/ClientRepository';
-import { ClientPayload } from '../config/types/clientPayLoad';
+import { EmployeeRepository } from '../../employee/repositories/EmployeeRepository';
+import { EmployeePayload } from '../config/types/employePayLoad';
 import { AuthRequest } from '../config/types/authRequest';
 
 dotenv.config();
@@ -18,14 +18,14 @@ export const authMiddleware = async (req: AuthRequest, res: Response, next: Next
 
   try{
 
-    const payload = jwt.verify(token, secretKey) as ClientPayload;
-    const client = await ClientRepository.findById(payload.client_id);
+    const payload = jwt.verify(token, secretKey) as EmployeePayload;
+    const employee = await EmployeeRepository.findById(payload.employee_id);
 
-    if (!client) {
+    if (!employee) {
       return res.status(401).json({ message: 'Invalid token' });
     }
   
-    req.clientData = payload;
+    req.employeeData = payload;
     next();
   } catch (error: any) {
     if (error.name === 'TokenExpiredError') {
