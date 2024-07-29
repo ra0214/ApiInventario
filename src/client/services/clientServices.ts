@@ -26,7 +26,8 @@ export class clientService {
 
             const payload = {
                 client_id: client.client_id,
-                fullname: client.fullname
+                fullname: client.fullname,
+                role_id_fk: client.role_id_fk
             };
 
             return jwt.sign(payload, secretKey, { expiresIn: '5m' });

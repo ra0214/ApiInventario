@@ -48,9 +48,7 @@ const port = parseInt(process.env.PORT, 10);
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)({
-    origin: 'http://localhost:8000/product',
-    methods: 'POST',
-    allowedHeaders: 'Content-Type',
+    origin: "*",
 }));
 // Rutas de los módulos
 app.use('/api/client', clientRoutes_1.default);

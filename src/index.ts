@@ -25,9 +25,7 @@ const port: number = parseInt(process.env.PORT as string, 10);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin: 'http://localhost:8000/product',
-  methods: 'POST',
-  allowedHeaders: 'Content-Type',
+  origin:"*",
 }));
 
 // Rutas de los módulos

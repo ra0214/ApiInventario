@@ -35,7 +35,8 @@ class clientService {
                 }
                 const payload = {
                     client_id: client.client_id,
-                    fullname: client.fullname
+                    fullname: client.fullname,
+                    role_id_fk: client.role_id_fk
                 };
                 return jsonwebtoken_1.default.sign(payload, secretKey, { expiresIn: '5m' });
             }

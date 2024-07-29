@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { clientService } from '../services/clientServices';
+import jwt from 'jsonwebtoken';
 
 export const loginClient = async (req: Request, res: Response) => {
   const { fullname, password } = req.body;
@@ -9,7 +10,9 @@ export const loginClient = async (req: Request, res: Response) => {
     if (!token) {
       res.status(401).json({ message: 'Invalid full name or password' });
     } else {
-      res.status(200).json({ token });
+      const decodedToken = jwt.decode(token) as { role_id_fk: number };
+      console.log(fullname)
+      res.status(200).json({ token, role_id_fk: decodedToken.role_id_fk , fullname});
     }
 
   } catch (error) {

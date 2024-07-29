@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteClient = exports.updateClient = exports.createClient = exports.getClientById = exports.getClients = exports.loginClient = void 0;
 const clientServices_1 = require("../services/clientServices");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const loginClient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { fullname, password } = req.body;
     try {
@@ -19,7 +23,8 @@ const loginClient = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             res.status(401).json({ message: 'Invalid full name or password' });
         }
         else {
-            res.status(200).json({ token });
+            const decodedToken = jsonwebtoken_1.default.decode(token);
+            res.status(200).json({ token, role_id_fk: decodedToken.role_id_fk });
         }
     }
     catch (error) {

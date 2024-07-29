@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const ClientRepository_1 = require("../../client/repositories/ClientRepository");
+const EmployeeRepository_1 = require("../../employee/repositories/EmployeeRepository");
 dotenv_1.default.config();
 const secretKey = process.env.SECRET || "";
 const authMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,11 +26,11 @@ const authMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     }
     try {
         const payload = jsonwebtoken_1.default.verify(token, secretKey);
-        const client = yield ClientRepository_1.ClientRepository.findById(payload.client_id);
-        if (!client) {
+        const employee = yield EmployeeRepository_1.EmployeeRepository.findById(payload.employee_id);
+        if (!employee) {
             return res.status(401).json({ message: 'Invalid token' });
         }
-        req.clientData = payload;
+        req.employeeData = payload;
         next();
     }
     catch (error) {

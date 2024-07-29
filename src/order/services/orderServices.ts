@@ -37,12 +37,6 @@ export class orderService {
                 if(orderData.user_id){
                     orderFinded.user_id = orderData.user_id;
                 }
-                if(orderData.status){
-                    orderFinded.status = orderData.status;
-                }
-                if(orderData.description){
-                    orderFinded.description = orderData.description;
-                }
                 if(orderData.total){
                     orderFinded.total = orderData.total;
                 }

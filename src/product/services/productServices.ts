@@ -29,6 +29,8 @@ export class productService {
     
     try {
       product.url = `${urlProject}:${portProject}/uploads/${file.filename}`;
+      console.log(product.url);
+      
       
       product.created_at = DateUtils.formatDate(new Date());
       product.updated_at = DateUtils.formatDate(new Date());
