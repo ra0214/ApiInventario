@@ -7,6 +7,8 @@ import * as dotenv from 'dotenv';
 import employeeRoutes from './employee/routes/employeeRoutes';
 import clientRoutes from './client/routes/clientRoutes';
 import contactRoutes from './contacts/routes/contactRoutes';
+import productRoutes from './product/routes/productRoutes';
+import userRoutes from './users/routes/usersRoutes';
 
 // Importar middlewares compartidos
 import { errorHandler } from './shared/middlewares/errorHandler';
@@ -28,6 +30,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/contact', contactRoutes);
 app.use('/api/client', clientRoutes);
 app.use('/api/employee', employeeRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/product', productRoutes);
 
 // Middleware para manejar rutas no encontradas
 app.use(notFoundHandler);
@@ -36,5 +40,5 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://54.204.239.6:${port}`);
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });
